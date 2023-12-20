@@ -1,0 +1,63 @@
+name: Build and Publish
+
+on:
+  push:
+    tags:
+    - "[0-9]+.[0-9]+.[0-9]+"
+  pull_request:
+    branches:
+    - main
+    - feat/*
+    - fix/*
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  publish:
+    name: Build and Publish Docker image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    env:
+      GITHUB_ACTOR: ${{ github.actor }}
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+      with:
+        platforms: linux/amd64,linux/arm64
+    - name: Install DevSpace
+      uses: loft-sh/setup-devspace@main
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ github.token }}
+    - name: Get Version Number
+      id: get_version
+      run: |
+        VERSION=$(git describe --tags --abbrev=0)
+        if [ "${{ github.event_name }}" = "pull_request" ]
+        then
+          VERSION=$VERSION-preview.${{ github.event.number }}.${{ github.run_number }}
+        fi
+        echo "Version is $VERSION"
+        echo version=$VERSION >> $GITHUB_OUTPUT
+    - name: Build and Publish v${{ steps.get_version.outputs.version }} using DevSpace
+      run: devspace build -t ${{ steps.get_version.outputs.version }}
+    - name: Helm Package and Publish
+      uses: appany/helm-oci-chart-releaser@v0.4.1
+      with:
+        name: marketplace
+        repository: deepetherlabs/helm
+        tag: ${{ steps.get_version.outputs.version }}
+        path: .
+        registry: ghcr.io
+        registry_username: ${{ github.actor }}
+        registry_password: ${{ github.token }}
+        update_dependencies: 'true' # Defaults to false  
