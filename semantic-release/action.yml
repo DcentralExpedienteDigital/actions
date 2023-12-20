@@ -5,13 +5,13 @@ runs:
   using: composite
   steps:
   - name: Copy .releaserc
-    run: cp $GITHUB_ACTION_PATH/resources/* .
+    run: cp $GITHUB_ACTION_PATH/resources/.releaserc.yaml .
     shell: bash
   - name: List
     run: ls -la
     shell: bash
   - name: Setup dependencies
-    run: npm clean-install
+    run: npm --prefix $GITHUB_ACTION_PATH/resources/ clean-install
     shell: bash
   - name: Release
     run: npx semantic-release
