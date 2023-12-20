@@ -14,7 +14,7 @@ on:
 
 jobs:
   publish:
-    name: Build and Publish Docker image
+    name: Build and Publish Docker and Helm Chart
     runs-on: ubuntu-latest
     env:
       GITHUB_ACTOR: ${{ github.actor }}
