@@ -7,9 +7,6 @@ runs:
   - name: Copy .releaserc
     run: cp -a $GITHUB_ACTION_PATH/resources/. .
     shell: bash
-  - name: List
-    run: ls -la
-    shell: bash
   - name: Setup dependencies
     run: npm clean-install
     shell: bash
