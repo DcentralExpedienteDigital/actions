@@ -16,9 +16,6 @@ jobs:
   publish:
     name: Build and Publish Docker image
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
     env:
       GITHUB_ACTOR: ${{ github.actor }}
       GITHUB_TOKEN: ${{ github.token }}
