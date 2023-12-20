@@ -8,7 +8,7 @@ runs:
     run: cp $GITHUB_ACTION_PATH/resources/* .
     shell: bash
   - name: List
-    run: ls
+    run: ls -la
     shell: bash
   - name: Setup dependencies
     run: npm clean-install
