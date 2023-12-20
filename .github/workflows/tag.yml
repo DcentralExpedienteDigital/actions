@@ -14,4 +14,4 @@ jobs:
       with:
         fetch-depth: 0
     - name: Release
-      uses: deepetherlabs/actions/semantic-release
+      uses: deepetherlabs/actions/semantic-release@main
