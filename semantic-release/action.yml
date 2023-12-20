@@ -4,11 +4,11 @@ description: Runs Semantic Release
 runs:
   using: composite
   steps:
-  - name: Setup dependencies
-    run: npm --prefix $GITHUB_ACTION_PATH clean-install
-    shell: bash
   - name: Copy .releaserc
-    run: cp $GITHUB_ACTION_PATH/.releaserc.yaml .
+    run: cp $GITHUB_ACTION_PATH/resources/* .
+    shell: bash
+  - name: Setup dependencies
+    run: npm clean-install
     shell: bash
   - name: Release
     run: npx semantic-release
