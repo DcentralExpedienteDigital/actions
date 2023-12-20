@@ -13,11 +13,5 @@ jobs:
     - uses: actions/checkout@v4
       with:
         fetch-depth: 0
-    - name: Testing
-      run: ls $GITHUB_ACTION_PATH
-    - name: Setup dependencies
-      run: npm clean-install
     - name: Release
-      run: npx semantic-release
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
+      uses: deepetherlabs/actions/semantic-release

@@ -1,15 +1,9 @@
-name: Tag
-description: Tag using Sementic Versioning
+name: Semantic Release
+description: Runs Semantic Release
 
 runs:
   using: composite
   steps:
-  - uses: actions/checkout@v4
-    with:
-      fetch-depth: 0
-  - name: Testing
-    run: ls $GITHUB_ACTION_PATH
-    shell: bash
   - name: Setup dependencies
     run: npm clean-install
     shell: bash
