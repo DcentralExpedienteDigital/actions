@@ -1,0 +1,22 @@
+name: Version
+description: Get Version number from Git
+
+outputs:
+  image:
+    value: ${{ steps.get_version.outputs.version }}
+    description: Computed Version number
+
+runs:
+  using: composite
+  steps:
+  - name: Get Version Number
+    id: get_version
+    run: |
+      VERSION=$(git describe --tags --abbrev=0)
+      if [ "${{ github.event_name }}" = "pull_request" ]
+      then
+        VERSION=$VERSION-preview.${{ github.event.number }}.${{ github.run_number }}
+      fi
+      echo "Version is $VERSION"
+      echo version=$VERSION >> $GITHUB_OUTPUT
+    shell: bash
