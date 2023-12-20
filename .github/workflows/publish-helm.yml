@@ -47,6 +47,8 @@ jobs:
         echo version=$VERSION >> $GITHUB_OUTPUT
     - name: Build and Publish v${{ steps.get_version.outputs.version }} using DevSpace
       run: devspace build -t ${{ steps.get_version.outputs.version }}
+    - name: Add Helm Repository
+      run: helm repo add private https://raw.githubusercontent.com/deepetherlabs/helm-charts/gh-pages --username $GITHUB_ACTOR --password $GITHUB_TOKEN
     - name: Helm Package and Publish
       uses: appany/helm-oci-chart-releaser@v0.4.1
       with:
