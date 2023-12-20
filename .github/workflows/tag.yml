@@ -1,10 +1,7 @@
-name: Tag, Build and Publish
+name: Tag
 
 on:
-  push:
-    branches:
-    - main
-  workflow_dispatch:
+  workflow_call:
 
 jobs:
   tag_release:
