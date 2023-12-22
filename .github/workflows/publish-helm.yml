@@ -12,11 +12,14 @@ jobs:
     name: Build and Publish Helm Chart
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
     - name: Helm Package and Publish
       uses: appany/helm-oci-chart-releaser@v0.4.1
       with:
         name: ${{ github.event.repository.name }}
-        repository: deepetherlabs/helm
+        repository: ${GITHUB_REPOSITORY_OWNER}/helm
         tag: ${{ steps.get_version.outputs.version }}
         path: .
         registry: ghcr.io
