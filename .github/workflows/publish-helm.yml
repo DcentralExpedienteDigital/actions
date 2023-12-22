@@ -4,12 +4,14 @@ on:
   workflow_call:
 
 jobs:
+  docker:
+    name: Build and Publish Docker
+    uses: deepetherlabs/actions/.github/workflows/publish-docker.yml@main
+    secrets: inherit
   publish:
-    name: Build and Publish Docker and Helm Chart
+    name: Build and Publish Helm Chart
     runs-on: ubuntu-latest
     steps:
-    - name: Docker Build and Publish
-      uses: deepetherlabs/actions/.github/workflows/publish-helm.yml@main
     - name: Helm Package and Publish
       uses: appany/helm-oci-chart-releaser@v0.4.1
       with:
@@ -24,3 +26,4 @@ jobs:
       env:
         GITHUB_ACTOR: ${{ github.actor }}
         GITHUB_TOKEN: ${{ github.token }}
+    needs: [docker]
