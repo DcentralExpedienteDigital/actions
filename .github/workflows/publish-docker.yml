@@ -25,6 +25,6 @@ jobs:
         password: ${{ github.token }}
     - name: Get Version Number
       id: get_version
-      uses: deepetherlabs/actions/version@main
+      uses: ${GITHUB_REPOSITORY_OWNER}/actions/version@main
     - name: Build and Publish v${{ steps.get_version.outputs.version }} using DevSpace
       run: devspace build -t ${{ steps.get_version.outputs.version }}

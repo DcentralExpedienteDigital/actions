@@ -12,4 +12,4 @@ jobs:
       with:
         fetch-depth: 0
     - name: Release
-      uses: deepetherlabs/actions/semantic-release@main
+      uses: ${GITHUB_REPOSITORY_OWNER}/actions/semantic-release@main

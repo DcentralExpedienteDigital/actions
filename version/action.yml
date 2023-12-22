@@ -2,7 +2,7 @@ name: Version
 description: Get Version number from Git
 
 outputs:
-  image:
+  version:
     value: ${{ steps.get_version.outputs.version }}
     description: Computed Version number
 

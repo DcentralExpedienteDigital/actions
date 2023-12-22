@@ -9,15 +9,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Docker Build and Publish
-      uses: deepetherlabs/actions/.github/workflows/publish-helm.yml@main
+      uses: ${GITHUB_REPOSITORY_OWNER}/actions/.github/workflows/publish-helm.yml@main
     - name: Helm Package and Publish
       uses: appany/helm-oci-chart-releaser@v0.4.1
       with:
         name: ${{ github.event.repository.name }}
-        repository: deepetherlabs/helm
+        repository: ${GITHUB_REPOSITORY_OWNER}/helm
         tag: ${{ steps.get_version.outputs.version }}
         path: .
         registry: ghcr.io
         registry_username: ${{ github.actor }}
         registry_password: ${{ github.token }}
-        update_dependencies: 'true' # Defaults to false  
+        update_dependencies: 'true'
+      env:
+        GITHUB_ACTOR: ${{ github.actor }}
+        GITHUB_TOKEN: ${{ github.token }}
