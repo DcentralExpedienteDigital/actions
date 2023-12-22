@@ -14,7 +14,7 @@ jobs:
       uses: appany/helm-oci-chart-releaser@v0.4.1
       with:
         name: ${{ github.event.repository.name }}
-        repository: ${GITHUB_REPOSITORY_OWNER}/helm
+        repository: deepetherlabs/helm
         tag: ${{ steps.get_version.outputs.version }}
         path: .
         registry: ghcr.io
