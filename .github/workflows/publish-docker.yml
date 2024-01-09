@@ -4,6 +4,19 @@ on:
   workflow_call:
 
 jobs:
+  test:
+    name: Build and Publish Docker
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Install Task
+      uses: arduino/setup-task@v1
+      with:
+        version: 3.x
+    - name: Run Test Task
+      run: task test
   publish:
     name: Build and Publish Docker
     runs-on: ubuntu-latest
@@ -31,3 +44,4 @@ jobs:
       env:
         GITHUB_ACTOR: ${{ github.actor }}
         GITHUB_TOKEN: ${{ github.token }}
+    needs: [test]
