@@ -12,8 +12,13 @@ jobs:
       uses: actions/checkout@v4
       with:
         token: ${{ secrets.SYNC_GITHUB_TOKEN }}
-    - name: Template Sync
-      uses: deepetherlabs/actions/actions-template-sync@main
+    - name: Install Task
+      uses: arduino/setup-task@v1
+      with:
+        version: 3.x
+    - name: Execute Actions Template Sync
+      uses: AndreasAugustin/actions-template-sync@v1
       with:
         github_token: ${{ secrets.SYNC_GITHUB_TOKEN }}
-        repository: sync-dotnet-template
+        source_repo_path: ${{ github.repository_owner }}/sync-dotnet-template
+        is_allow_hooks: true

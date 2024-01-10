@@ -1,4 +1,0 @@
-hooks:
-  prepush:
-    commands:
-    - task sync-hook
