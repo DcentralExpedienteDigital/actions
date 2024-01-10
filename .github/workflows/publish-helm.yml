@@ -6,7 +6,7 @@ on:
 jobs:
   docker:
     name: Build and Publish Docker
-    uses: ${{ github.repository_owner }}/actions/.github/workflows/publish-docker.yml@main
+    uses: deepetherlabs/actions/.github/workflows/publish-docker.yml@main
     secrets: inherit
   publish:
     name: Build and Publish Helm Chart
@@ -17,7 +17,7 @@ jobs:
         fetch-depth: 0
     - name: Get Version Number
       id: get_version
-      uses: ${{ github.repository_owner }}/actions/version@main
+      uses: deepetherlabs/actions/version@main
     - name: Helm Package and Publish
       uses: appany/helm-oci-chart-releaser@v0.4.1
       with:
