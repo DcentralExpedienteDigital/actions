@@ -11,11 +11,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
       with:
-        # submodules: true
         token: ${{ secrets.SYNC_GITHUB_TOKEN }}
-    - name: actions-template-sync
-      uses: AndreasAugustin/actions-template-sync@v1
+    - name: Template Sync
+      uses: deepetherlabs/actions/actions-template-sync@main
       with:
-        github_token: ${{ secrets.SYNC_GITHUB_TOKEN }}
-        source_repo_path: deepetherlabs/sync-dotnet-template
-        is_allow_hooks: true
+        repository: sync-dotnet-template

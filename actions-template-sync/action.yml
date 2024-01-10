@@ -1,0 +1,24 @@
+name: Sync with Template
+description: Runs Actions Template Sync
+
+inputs:
+  repository:
+    description: 'The name of the sync source repository'
+    required: true
+
+runs:
+  using: composite
+  steps:
+  - name: Copy resources
+    run: cp -a $GITHUB_ACTION_PATH/resources/. .
+    shell: bash
+  - name: Install Task
+    uses: arduino/setup-task@v1
+    with:
+      version: 3.x
+  - name: Execute Actions Template Sync
+    uses: AndreasAugustin/actions-template-sync@v1
+    with:
+      github_token: ${{ secrets.SYNC_GITHUB_TOKEN }}
+      source_repo_path: ${GITHUB_REPOSITORY_OWNER}/${{ inputs.repository }}
+      is_allow_hooks: true
