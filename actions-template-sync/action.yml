@@ -23,5 +23,5 @@ runs:
     uses: AndreasAugustin/actions-template-sync@v1
     with:
       github_token: ${{ inputs.github_token }}
-      source_repo_path: ${GITHUB_REPOSITORY_OWNER}/${{ inputs.repository }}
+      source_repo_path: ${{ github.repository_owner }}/${{ inputs.repository }}
       is_allow_hooks: true
