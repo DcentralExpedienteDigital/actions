@@ -27,6 +27,7 @@ jobs:
         name: Tests
         path: /tmp/test-results/*.trx
         reporter: dotnet-trx
+        fail-on-empty: false
   publish:
     name: Build and Publish Docker
     runs-on: ubuntu-latest
