@@ -15,4 +15,5 @@ jobs:
     - name: Template Sync
       uses: deepetherlabs/actions/actions-template-sync@main
       with:
+        github_token: ${{ secrets.SYNC_GITHUB_TOKEN }}
         repository: sync-dotnet-template

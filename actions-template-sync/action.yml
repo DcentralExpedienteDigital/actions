@@ -2,6 +2,9 @@ name: Sync with Template
 description: Runs Actions Template Sync
 
 inputs:
+  github_token:
+    description: 'Token for the repo. Can be passed in using $\{{ secrets.GITHUB_TOKEN }}'
+    required: true
   repository:
     description: 'The name of the sync source repository'
     required: true
@@ -19,6 +22,6 @@ runs:
   - name: Execute Actions Template Sync
     uses: AndreasAugustin/actions-template-sync@v1
     with:
-      github_token: ${{ secrets.SYNC_GITHUB_TOKEN }}
+      github_token: ${{ inputs.github_token }}
       source_repo_path: ${GITHUB_REPOSITORY_OWNER}/${{ inputs.repository }}
       is_allow_hooks: true
