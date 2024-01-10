@@ -16,4 +16,3 @@ jobs:
         github_token: ${{ github.token }}
         source_repo_path: deepetherlabs/sync-dotnet-template
         pr_labels: chore,template-sync
-        source_repo_ssh_private_key: ${{ secrets.SYNC_DOTNET_TEMPLATE_SSH_PRIVATE_KEY }}
