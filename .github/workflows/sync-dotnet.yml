@@ -22,5 +22,5 @@ jobs:
         github_token: ${{ github.token }}
         source_repo_path: ${{ github.repository_owner }}/sync-dotnet-template
         is_allow_hooks: true
-        source_repo_ssh_private_key: ${{ secrets.SOURCE_REPO_SSH_PRIVATE_KEY }}
+        source_repo_ssh_private_key: ${{ secrets.SYNC_DOTNET_TEMPLATE_SSH_PRIVATE_KEY }}
         is_not_source_github: true
