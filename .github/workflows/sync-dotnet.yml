@@ -13,7 +13,7 @@ jobs:
       with:
         token: ${{ github.token }}
     - name: Execute Actions Template Sync
-      uses: AndreasAugustin/actions-template-sync@v1
+      uses: xontab/actions-template-sync@main
       with:
         github_token: ${{ github.token }}
         source_repo_path: ${{ github.repository_owner }}/sync-dotnet-template
