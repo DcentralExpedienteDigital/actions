@@ -18,7 +18,7 @@ jobs:
         github_token: ${{ github.token }}
         source_repo_path: ${{ github.repository_owner }}/sync-dotnet-template
         source_repo_ssh_private_key: ${{ secrets.SYNC_DOTNET_TEMPLATE_SSH_PRIVATE_KEY }}
-        git_remote_pull_params: "--allow-unrelated-histories --squash --strategy=recursive"
+        git_remote_pull_params: "--allow-unrelated-histories --squash --strategy=recursive -X patience"
         pr_title: Sync with .NET Template
         is_allow_hooks: true
         is_not_source_github: true
