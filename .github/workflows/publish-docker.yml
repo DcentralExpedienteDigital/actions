@@ -31,7 +31,7 @@ jobs:
         reporter: dotnet-trx
         fail-on-empty: false
     - name: Code Coverage Report
-      uses: irongut/CodeCoverageSummary@v1
+      uses: irongut/CodeCoverageSummary@v1.3
       with:
         filename: tmp/test-results/**/coverage.cobertura.xml
         badge: true
