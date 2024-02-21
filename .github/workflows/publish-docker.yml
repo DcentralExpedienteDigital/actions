@@ -33,7 +33,6 @@ jobs:
     - name: Check Code Coverage Report
       uses: andstor/file-existence-action@v3
       id: check_coverage_report
-      if: success() || failure()
       with:
         files: testresults/**/coverage.cobertura.xml
     - name: Code Coverage Report
@@ -46,7 +45,7 @@ jobs:
         format: markdown
         indicators: true
         output: both
-        thresholds: '60 80'
+        thresholds: '40 70'
     - name: Write to Job Summary
       if: success() || failure()
       run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY

@@ -18,6 +18,6 @@ runs:
         VERSION=$VERSION-preview.${{ github.event.number }}.${{ github.run_number }}
       fi
       echo "Version is $VERSION"
+      echo "Version is $VERSION" >> $GITHUB_STEP_SUMMARY
       echo version=$VERSION >> $GITHUB_OUTPUT
-      cat Version Number is $VERSION >> $GITHUB_STEP_SUMMARY
     shell: bash
