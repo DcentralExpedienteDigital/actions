@@ -31,12 +31,9 @@ jobs:
         reporter: dotnet-trx
         fail-on-empty: false
     - name: Code Coverage Report
-      uses: insightsengineering/coverage-action@v2
+      uses: clearlyip/code-coverage-report-action@v4
       with:
-        # Path to the Cobertura XML report.
-        path: testresults/**/coverage.cobertura.xml
-        threshold: 70
-        fail: false
+        filename: testresults/**/coverage.cobertura.xml
   publish:
     name: Build and Publish Docker
     runs-on: ubuntu-latest
