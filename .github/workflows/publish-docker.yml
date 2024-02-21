@@ -31,9 +31,13 @@ jobs:
         reporter: dotnet-trx
         fail-on-empty: false
     - name: Code Coverage Report
-      uses: clearlyip/code-coverage-report-action@v4
+      uses: 5monkeys/cobertura-action@master
       with:
-        filename: testresults/**/coverage.cobertura.xml
+        path: testresults/**/coverage.cobertura.xml
+        minimum_coverage: 75
+        fail_below_threshold: false
+        show_missing: true
+        link_missing_lines: true
   publish:
     name: Build and Publish Docker
     runs-on: ubuntu-latest
