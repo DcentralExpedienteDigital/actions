@@ -19,4 +19,5 @@ runs:
       fi
       echo "Version is $VERSION"
       echo version=$VERSION >> $GITHUB_OUTPUT
+      cat Version Number is $VERSION >> $GITHUB_STEP_SUMMARY
     shell: bash
