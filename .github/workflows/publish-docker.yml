@@ -32,7 +32,7 @@ jobs:
         fail-on-empty: false
     - name: Check Code Coverage Report
       id: check_coverage_report
-      uses: thebinaryfelix/check-file-existence-action@v1.3.0
+      uses: thebinaryfelix/check-file-existence-action@v1.0.0
       if: success() || failure()
       with:
         files: testresults/**/coverage.cobertura.xml
