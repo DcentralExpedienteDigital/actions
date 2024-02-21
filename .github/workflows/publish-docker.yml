@@ -30,6 +30,16 @@ jobs:
         path: /tmp/test-results/*.trx
         reporter: dotnet-trx
         fail-on-empty: false
+    - name: Code Coverage Report
+      uses: irongut/CodeCoverageSummary@v1
+      with:
+        filename: tmp/test-results/**/coverage.cobertura.xml
+        badge: true
+        fail_below_min: false
+        format: markdown
+        indicators: true
+        output: both
+        thresholds: '60 80'
   publish:
     name: Build and Publish Docker
     runs-on: ubuntu-latest
