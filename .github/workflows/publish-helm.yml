@@ -19,7 +19,7 @@ jobs:
       id: get_version
       uses: deepetherlabs/actions/version@main
     - name: Helm Package and Publish
-      uses: appany/helm-oci-chart-releaser@v0.4.1
+      uses: appany/helm-oci-chart-releaser@v0.4.2
       with:
         name: ${{ github.event.repository.name }}
         repository: ${GITHUB_REPOSITORY_OWNER}/helm
