@@ -21,7 +21,7 @@ jobs:
     - name: Get Release Name
       id: get_release_name
       run: |
-        HELM_REPOSITORY= $(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+        HELM_REPOSITORY=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
         echo "Helm Repository is $HELM_REPOSITORY"
         echo "Helm Repository is $HELM_REPOSITORY" >> $GITHUB_STEP_SUMMARY
         echo helm_repository=$HELM_REPOSITORY >> $GITHUB_OUTPUT
