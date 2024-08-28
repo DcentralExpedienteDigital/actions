@@ -18,10 +18,18 @@ jobs:
     - name: Get Version Number
       id: get_version
       uses: deepetherlabs/actions/version@main
+    - name: Get Release Name
+      id: get_release_name
+      run: |
+        HELM_RELEASE_NAME=$(yq -oy '.name' Chart.yaml || echo ${{ github.event.repository.name }})
+        echo "Helm Release Name is $HELM_RELEASE_NAME"
+        echo "Helm Release Name is $HELM_RELEASE_NAME" >> $GITHUB_STEP_SUMMARY
+        echo helm_release_name=$HELM_RELEASE_NAME >> $GITHUB_OUTPUT
+      shell: bash
     - name: Helm Package and Publish
       uses: appany/helm-oci-chart-releaser@v0.4.2
       with:
-        name: ${{ github.event.repository.name }}
+        name: ${{ steps.get_release_name.outputs.helm_release_name }}
         repository: ${GITHUB_REPOSITORY_OWNER}/helm
         tag: ${{ steps.get_version.outputs.version }}
         path: .
