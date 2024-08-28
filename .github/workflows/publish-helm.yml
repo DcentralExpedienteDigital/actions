@@ -21,6 +21,10 @@ jobs:
     - name: Get Release Name
       id: get_release_name
       run: |
+        HELM_REPOSITORY= $(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]')
+        echo "Helm Repository is $HELM_REPOSITORY"
+        echo "Helm Repository is $HELM_REPOSITORY" >> $GITHUB_STEP_SUMMARY
+        echo helm_repository=$HELM_REPOSITORY >> $GITHUB_OUTPUT
         HELM_RELEASE_NAME=$(yq -oy '.name' Chart.yaml || echo ${{ github.event.repository.name }})
         echo "Helm Release Name is $HELM_RELEASE_NAME"
         echo "Helm Release Name is $HELM_RELEASE_NAME" >> $GITHUB_STEP_SUMMARY
@@ -30,7 +34,7 @@ jobs:
       uses: appany/helm-oci-chart-releaser@v0.4.2
       with:
         name: ${{ steps.get_release_name.outputs.helm_release_name }}
-        repository: ${{ github.repository_owner }}/helm
+        repository: ${{ steps.get_release_name.outputs.helm_repository }}/helm
         tag: ${{ steps.get_version.outputs.version }}
         path: .
         registry: ghcr.io
