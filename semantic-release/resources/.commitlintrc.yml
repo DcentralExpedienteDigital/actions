@@ -16,3 +16,7 @@ rules:
   - - chore
     - feat
     - fix
+  header-max-length:
+  - 1
+  - always
+  - 120
