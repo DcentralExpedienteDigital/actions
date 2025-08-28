@@ -6,7 +6,7 @@ on:
 jobs:
   docker:
     name: Build and Publish Docker
-    uses: deepetherlabs/actions/.github/workflows/publish-docker.yml@main
+    uses: dcentralexpedientedigital/actions/.github/workflows/publish-docker.yml@main
     secrets: inherit
   publish:
     name: Build and Publish Helm Chart
@@ -17,7 +17,7 @@ jobs:
         fetch-depth: 0
     - name: Get Version Number
       id: get_version
-      uses: deepetherlabs/actions/version@main
+      uses: dcentralexpedientedigital/actions/version@main
     - name: Get Release Name
       id: get_release_name
       run: |
