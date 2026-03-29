@@ -24,7 +24,7 @@ jobs:
         GITHUB_ACTOR: ${{ github.actor }}
         GITHUB_TOKEN: ${{ github.token }}
     - name: .NET Test Report
-      uses: dorny/test-reporter@v1
+      uses: dorny/test-reporter@v2
       if: success() || failure()
       with:
         name: Tests
@@ -32,7 +32,7 @@ jobs:
         reporter: dotnet-trx
         fail-on-empty: false
     - name: JUnit Test Report
-      uses: dorny/test-reporter@v1
+      uses: dorny/test-reporter@v2
       if: success() || failure()
       with:
         name: Tests
